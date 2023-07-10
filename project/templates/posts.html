@@ -1,0 +1,35 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters  %}
+
+{% block title %}
+Products
+{% endblock title %}
+
+{% block content %}
+   <h1>Все публикации</h1>
+   <hr>
+   {% if posts %}
+       <table>
+           <tr>
+               <td>Название</td>
+               <td>Текст</td>
+               <td>Категория</td>
+               <td>Количество страниц</td>
+               <td>Дата и время публикации</td>
+           </tr>
+           {% for post in posts %}
+           <tr>
+               <td>{{ post.name|censor }}</td>
+               <td>{{ post.text|truncatechars:20|censor }}</td>
+               <td>{{ post.category.name }}</td>
+               <td>{{ post.amount_of_pages }}</td>
+               <td>{{ post.date|date:'d.M.Y' }} {{ post.date|time:'H:i' }}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>Публикаций нет!</h2>
+   {% endif %}
+{% endblock content %}
