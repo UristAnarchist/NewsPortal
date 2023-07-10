@@ -1,0 +1,16 @@
+{% extends 'flatpages/default.html' %}
+
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+<h1>{{ post.name }}</h1>
+<hr>
+{{ post.date|date:'d.M.Y' }}
+{{ post.date|time:'H:i' }}
+(Категория:{{ post.category.name }})
+<hr>
+{{ post.text }}
+{% endblock content %}
